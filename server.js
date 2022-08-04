@@ -9,9 +9,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.get('/', (req, res) =>
+app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/assets/index.html'))
 );
+app.get('/api/notes', (req, res) => {
+    res.json(`${req.method}`);
+})
+
+app.post('/api/notes', (req, res) => {
+    res.json(`${req.method} request received to upvote`);
+
+})
 
 app.listen(PORT, () =>
   console.log(`Express server listening on port ${PORT}!`)
