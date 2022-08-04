@@ -21,6 +21,12 @@ app.post('/api/notes', (req, res) => {
 
 })
 
+app.delete("/api/notes/:id", (req, res) => {
+    res.json(fs.readFileSync("./db/db.json"));
+    fs.writeFileSync("./db/db.json", JSON.stringify(notelist));
+    res.json(notelist);
+ })
+
 app.listen(PORT, () =>
   console.log(`Express server listening on port ${PORT}!`)
 );
